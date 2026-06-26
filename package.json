@@ -1,0 +1,24 @@
+{
+  "name": "sml-verter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SVG to Alight Motion XML converter.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:web": "esbuild Source/Web/Entry.ts --bundle --outfile=Web/SmlVerter.js --format=iife --platform=browser --alias:@xmldom/xmldom=./Source/Web/XmldomShim.ts --alias:node:path=./Source/Web/PathShim.ts --target=es2020",
+    "test": "npm run build && node --test Tests/*.test.js",
+    "convert": "npm run build && node Dist/Cli.js convert",
+    "validate": "npm run build && node Dist/Cli.js validate",
+    "build:version:1.1": "npm run build && node Dist/VersionBuilder.js 1.1"
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "^0.8.10",
+    "svg-pathdata": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.5.3"
+  }
+}
